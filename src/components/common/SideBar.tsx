@@ -2,19 +2,21 @@ import { NavLink } from "react-router-dom";
 
 export default function SideBar() {
   return (
-    <div className="min-h-screen w-1/5 bg-slate-900 text-white p-6">
-      <div className="flex items-center mb-10">
-        <div className="h-12 w-12 rounded-full bg-blue-500 flex items-center justify-center mr-3"></div>
+    <div className="min-h-screen w-1/5 bg-slate-900 text-white p-[24px]">
+      <div className="flex items-center mb-[40px]">
+        <div
+          /* Logo and Title */ className="h-12 w-12 rounded-full bg-blue-500 flex items-center justify-center mr-[12px]"
+        ></div>
         <h1 className="text-xl font-bold">E-CORP</h1>
       </div>
 
-      <nav>
-        <ul className="space-y-6">
+      <nav /* Navigation Menu */ className="flex flex-col">
+        <ul className="space-y-[24px]">
           <li>
             <NavLink
-              to="/dashboard"
+              to="/"
               className={({ isActive }) => `
-                flex items-center p-3 rounded-lg
+                flex items-center p-[12px] rounded-lg
                 ${isActive ? "bg-slate-800" : ""}
               `}
             >
