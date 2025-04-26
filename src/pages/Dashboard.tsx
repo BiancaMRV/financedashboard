@@ -1,12 +1,14 @@
+import PortfolioChart from "../components/dashboard/PortfolioChart";
+
 export default function Dashboard() {
   return (
-    <div className="flex-1 p-8">
+    <div className="flex-1 ">
       {/* Cabeçalho */}
       <div className="w-2/3 ">
         <h1 className="text-white text-2xl "> Visão Geral Financeira </h1>
         <h2 className="text-white text-xs mt-[10px]"> 26 de Abril de 2025</h2>
       </div>
-      {/* cards */}
+      {/* primeiros cards */}
       <div className="grid grid-cols-3 gap-x-6 mt-9">
         {/*Patrimonio total*/}
         <div className="bg-gray-900 p-6 rounded-2xl">
@@ -24,6 +26,13 @@ export default function Dashboard() {
           <h1 className="text-gray-400 text-sm">Despesas Mensais</h1>
           <p className="text-2xl text-white mt-2"> $7891.90 </p>
           <p className="text-xs text-red-500 mt-2"> -3,8%</p>
+        </div>
+      </div>
+      {/* segundos cards */}
+      <div className="grid grid-cols-3 mt-8">
+        {/* grafico grande */}
+        <div className="bg-gray-900 p-6 rounded-2xl col-span-2">
+          <PortfolioChart />
         </div>
       </div>
     </div>
