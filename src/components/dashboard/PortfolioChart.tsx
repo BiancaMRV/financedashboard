@@ -95,7 +95,7 @@ export default function PortfolioChart() {
   };
 
   return (
-    <div className="h-[350px] flex flex-col gap-4">
+    <div className="h-[400px] flex flex-col gap-4">
       <div className="flex gap-4">
         <button
           onClick={() => setMode("mensal")}
@@ -118,7 +118,7 @@ export default function PortfolioChart() {
           Anual
         </button>
       </div>
-      <div className="h-[300px]">
+      <div className="h-[400px] w-full">
         <Line
           data={mode === "mensal" ? monthlyData : annualData}
           options={options}

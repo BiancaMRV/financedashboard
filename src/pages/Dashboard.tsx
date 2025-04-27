@@ -32,20 +32,16 @@ export default function Dashboard() {
       </div>
 
       {/* segundos cards */}
-      <div className="grid grid-cols-3 mt-8 gap-4">
+      <div className="grid grid-cols-3 mt-8 gap-4 ">
         {/* grafico grande */}
         <div className="bg-gray-900 p-6 rounded-2xl col-span-2">
-          <h2 className="text-gray-400 text-sm mb-2">
+          <h2 className="text-gray-400 text-sm mb-3 mt-4">
             Performance do Portfólio
           </h2>
           <p className="text-gray-500 text-xs mb-4">Últimos 12 meses</p>
-          <div className="flex mb-4">
-            <button className="bg-blue-600 text-white text-xs px-4 py-1 rounded-full mr-2">
-              Mensal
-            </button>
-            <button className="text-gray-400 text-xs px-4 py-1">Anual</button>
+          <div className=" h-64 items-center">
+            <PortfolioChart />
           </div>
-          <PortfolioChart />
         </div>
 
         {/* Coluna da direita - ocupa 1/3 do espaço com dois cards */}
