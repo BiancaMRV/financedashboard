@@ -1,3 +1,4 @@
+import Distribuição from "../components/dashboard/Distribuição";
 import PortfolioChart from "../components/dashboard/PortfolioChart";
 
 export default function Dashboard() {
@@ -29,10 +30,58 @@ export default function Dashboard() {
         </div>
       </div>
       {/* segundos cards */}
-      <div className="grid grid-cols-3 mt-8">
+      <div className="grid grid-cols-3 mt-8 gap-4">
         {/* grafico grande */}
+
         <div className="bg-gray-900 p-6 rounded-2xl col-span-2">
           <PortfolioChart />
+        </div>
+
+        {/* Coluna da direita - ocupa 1/3 do espaço */}
+        <div className="col-span-1 space-y-4">
+          {/* Card do Mercado de Cripto */}
+          <div className="bg-gray-900 p-6 rounded-2xl">
+            <h2 className="text-white text-sm font-semibold mb-4">
+              Mercado de Cripto
+            </h2>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="text-white text-sm">Bitcoin</div>
+                  <div className="text-gray-400 text-sm">BTC</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-white text-sm">$61,243.85</div>
+                  <div className="text-green-400 text-sm">+2.3%</div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="text-white text-sm">Ethereum</div>
+                  <div className="text-gray-400 text-sm">ETH</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-white text-sm">$3,517.42</div>
+                  <div className="text-green-400 text-sm">+1.8%</div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="text-white text-sm">XRP</div>
+                  <div className="text-gray-400 text-sm">XRP</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-white text-sm">$0.5842</div>
+                  <div className="text-red-400 text-sm">-0.7%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Distribuição */}
+        <div className="col-span-1 bg-gray-900 p-6 rounded-2xl">
+          <h2 className="text-white text-sm"> Distribuição </h2>
+          <Distribuição />
         </div>
       </div>
     </div>
