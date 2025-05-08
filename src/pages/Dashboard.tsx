@@ -7,7 +7,9 @@ export default function Dashboard() {
       {/* Cabeçalho */}
       <div className="w-2/3">
         <h1 className="text-white text-2xl"> Visão Geral Financeira </h1>
-        <h2 className="text-white text-xs mt-[10px]"> 26 de Abril de 2025</h2>
+        <h2 className="text-white text-xs mt-2 opacity-70">
+          {new Date().toLocaleDateString("pt-BR")}
+        </h2>
       </div>
 
       {/* primeiros cards */}
