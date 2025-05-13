@@ -38,7 +38,7 @@ export default function Transactions() {
     <div className="flex-1">
       {/* cabeçalho */}
       <div className="w-2/3">
-        <h1 className="text-white text-2xl font-bold"> Transações </h1>
+        <h1 className="text-white text-2xl"> Transações </h1>
         <h2 className="text-white text-xs mt-2 opacity-70">
           {new Date().toLocaleDateString("pt-BR")}
         </h2>
@@ -87,23 +87,18 @@ export default function Transactions() {
           <thead>
             <tr className="border-b border-gray-800">
               <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
-                {" "}
-                Data{" "}
+                Data
               </th>
               <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
-                {" "}
-                Descrição{" "}
+                Descrição
               </th>
               <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
-                {" "}
-                Categoria{" "}
+                Categoria
               </th>
               <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
-                {" "}
-                Valor{" "}
+                Valor
               </th>
               <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
-                {" "}
                 Status
               </th>
             </tr>
@@ -165,6 +160,22 @@ export default function Transactions() {
               ))}
           </tbody>
         </table>
+        {/* botao de paginacao */}
+        <div className="flex justify-center w-full mt-4 mb-4">
+          <div className=" inline-flex border border-gray-400 rounded-full  items-center justify-center px-4 py-1.5 mt-4 gap-2">
+            <h1 className="text-sm text-white"> Anterior</h1>
+            <button className="flex items-center justify-center w-6 h-6 text-sm text-white bg-blue-600 rounded-full">
+              1
+            </button>
+            <button className="flex items-center justify-center w-6 h-6 text-sm text-white rounded-full">
+              2
+            </button>
+            <button className="flex items-center justify-center w-6 h-6 text-sm text-white  rounded-full">
+              3
+            </button>
+            <h3 className=" text-sm text-white"> Próximo </h3>
+          </div>
+        </div>
       </div>
     </div>
   );
