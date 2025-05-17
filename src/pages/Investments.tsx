@@ -1,3 +1,5 @@
+import Alocacao from "../components/investments/Alocacao";
+
 export default function Investments() {
   return (
     <div className="flex-1">
@@ -25,6 +27,15 @@ export default function Investments() {
           <h1 className="text-gray-400 text-sm">ROI médio</h1>
           <p className="text-2xl text-white mt-2"> 8.4% </p>
           <p className="text-xs text-green-500 mt-2"> +0.8% que o benchmark</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-3 mt-8 gap-4 ">
+        {/* gráfico de pizza */}
+        <div className="bg-gray-900 p-6 rounded-2xl col-span-2">
+          <h2 className="text-gray-400 text-sm mb-3 mt-2">
+            Distribuição de Ativos
+          </h2>
+          <Alocacao />
         </div>
       </div>
     </div>
