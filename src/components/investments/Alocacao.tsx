@@ -17,16 +17,24 @@ export default function Alocacao() {
       },
     ],
   };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-
     plugins: {
       legend: { display: true },
       tooltip: {
         backgroundColor: "#1e293b",
         titleColor: "#fff",
         bodyColor: "#cbd5e1",
+        callbacks: {
+          label: function (context: any) {
+            const label = context.label || "";
+            const value = context.raw || 0;
+            const percentage = value + "%";
+            return `${label}: ${percentage}`;
+          },
+        },
       },
     },
     elements: {
@@ -35,6 +43,7 @@ export default function Alocacao() {
       },
     },
   };
+
   return (
     <div className="relative w-full h-[250px]">
       <Pie data={data} options={options} />
