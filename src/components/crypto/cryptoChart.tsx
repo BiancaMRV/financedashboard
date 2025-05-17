@@ -23,7 +23,7 @@ Chart.register(
 );
 export function CryptoChart() {
   const [bitcoinData, setBitcoinData] = useState({ prices: [], labels: [] });
-  const [myCoins, setMyCoins] = useState([]);
+
   const [timeframe, setTimeframe] = useState("24h");
   const [loading, setLoading] = useState(true);
 
