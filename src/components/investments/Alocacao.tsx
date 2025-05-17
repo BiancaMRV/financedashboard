@@ -2,7 +2,13 @@ import { Pie } from "react-chartjs-2";
 
 export default function Alocacao() {
   const data = {
-    labels: ["Ações", "Renda Fixa", "Imóveis", "Internacional", "Outros"],
+    labels: [
+      "Ações (40%)",
+      "Renda Fixa (30%)",
+      "Imóveis (20%)",
+      "Internacional (10%)",
+      "Outros (5%)",
+    ],
     datasets: [
       {
         data: [40, 30, 20, 10, 5],

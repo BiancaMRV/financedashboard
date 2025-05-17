@@ -35,7 +35,7 @@ export default function Investments() {
       <div className="flex flex-row gap-6 mt-8">
         {/* Gráfico de pizza - primeira coluna */}
         <div className="bg-gray-900 p-5 rounded-2xl w-1/2">
-          <h2 className="text-gray-400 text-xs mb-2">Distribuição de Ativos</h2>
+          <h2 className="text-gray-400 text-xs mb-4">Distribuição de Ativos</h2>
           <div className="h-60">
             <Alocacao />
           </div>
@@ -43,7 +43,7 @@ export default function Investments() {
 
         {/* Tabela de Principais Investimentos - segunda coluna */}
         <div className="bg-gray-900 p-5 rounded-2xl w-1/2 relative">
-          <h2 className="text-gray-200 text-lg mb-4">
+          <h2 className="text-gray-400 text-xs mb-4">
             Principais Investimentos
           </h2>
 
@@ -92,10 +92,6 @@ export default function Investments() {
             <div className="text-green-500 text-xs">+9.2%</div>
             <div className="text-gray-300 text-xs">5.5%</div>
           </div>
-
-          <button className="absolute bottom-4 right-4 bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors">
-            <span className="text-xl">+</span>
-          </button>
         </div>
       </div>
     </div>
