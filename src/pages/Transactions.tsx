@@ -46,11 +46,11 @@ export default function Transactions() {
 
       {/*filtros*/}
       <div className="flex items-center bg-gray-900 p-4 rounded-xl mt-4 gap-3">
-        <h1 className="text-white text-sm font-medium"> Filtros: </h1>
+        <h1 className="text-white text-xs font-medium"> Filtros: </h1>
         <div className="flex gap-2">
           <button
             onClick={() => setFilterButton("Todos")}
-            className={`px-4 py-2 rounded-full text-sm transition-colors ${
+            className={`px-4 py-2 rounded-full text-xs transition-colors ${
               filterbutton === "Todos"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-800 text-gray-300 hover:bg-gray-700"
@@ -60,7 +60,7 @@ export default function Transactions() {
           </button>
           <button
             onClick={() => setFilterButton("Entradas")}
-            className={`px-4 py-2 rounded-full text-sm transition-colors ${
+            className={`px-4 py-2 rounded-full text-xs transition-colors ${
               filterbutton === "Entradas"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-800 text-gray-300 hover:bg-gray-700"
@@ -70,7 +70,7 @@ export default function Transactions() {
           </button>
           <button
             onClick={() => setFilterButton("Saídas")}
-            className={`px-4 py-2 rounded-full text-sm transition-colors ${
+            className={`px-4 py-2 rounded-full text-xs transition-colors ${
               filterbutton === "Saídas"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-800 text-gray-300 hover:bg-gray-700"
@@ -86,19 +86,19 @@ export default function Transactions() {
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-gray-800">
-              <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
+              <th className="text-gray-400 text-xs font-medium text-left py-3 px-4">
                 Data
               </th>
-              <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
+              <th className="text-gray-400 text-xs font-medium text-left py-3 px-4">
                 Descrição
               </th>
-              <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
+              <th className="text-gray-400 text-xs font-medium text-left py-3 px-4">
                 Categoria
               </th>
-              <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
+              <th className="text-gray-400 text-xs font-medium text-left py-3 px-4">
                 Valor
               </th>
-              <th className="text-gray-400 text-sm font-medium text-left py-3 px-4">
+              <th className="text-gray-400 text-xs font-medium text-left py-3 px-4">
                 Status
               </th>
             </tr>
@@ -115,10 +115,10 @@ export default function Transactions() {
               })
               .map((transaction, index) => (
                 <tr key={index} className="border-b border-gray-800">
-                  <td className="text-white text-sm py-4 px-4">
+                  <td className="text-white text-xs py-4 px-4">
                     {transaction.date}
                   </td>
-                  <td className="text-white text-sm py-4 px-4">
+                  <td className="text-white text-xs py-4 px-4">
                     {transaction.description}
                   </td>
                   <td className="py-4 px-4">
@@ -137,7 +137,7 @@ export default function Transactions() {
                     </span>
                   </td>
                   <td
-                    className={`text-sm font-medium py-4 px-4 ${
+                    className={`text-xs font-medium py-4 px-4 ${
                       transaction.value.includes("+")
                         ? "text-green-400"
                         : "text-red-400"
@@ -163,17 +163,17 @@ export default function Transactions() {
         {/* botao de paginacao */}
         <div className="flex justify-center w-full mt-4 mb-4">
           <div className=" inline-flex border border-gray-400 rounded-full  items-center justify-center px-4 py-1.5 mt-4 gap-2">
-            <h1 className="text-sm text-white"> Anterior</h1>
-            <button className="flex items-center justify-center w-6 h-6 text-sm text-white bg-blue-600 rounded-full">
+            <h1 className="text-xs text-white"> Anterior</h1>
+            <button className="flex items-center justify-center w-6 h-6 text-xs text-white bg-blue-600 rounded-full">
               1
             </button>
-            <button className="flex items-center justify-center w-6 h-6 text-sm text-white rounded-full">
+            <button className="flex items-center justify-center w-6 h-6 text-xs text-white rounded-full">
               2
             </button>
-            <button className="flex items-center justify-center w-6 h-6 text-sm text-white  rounded-full">
+            <button className="flex items-center justify-center w-6 h-6 text-xs text-white  rounded-full">
               3
             </button>
-            <h3 className=" text-sm text-white"> Próximo </h3>
+            <h3 className=" text-xs text-white"> Próximo </h3>
           </div>
         </div>
       </div>
