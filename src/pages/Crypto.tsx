@@ -1,4 +1,4 @@
-import { CryptoChart } from "../components/crypto/cryptoChart";
+import CryptoChart from "../components/crypto/cryptoChart"; // Fixed import path casing
 
 export default function Crypto() {
   return (

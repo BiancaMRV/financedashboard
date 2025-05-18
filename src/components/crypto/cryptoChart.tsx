@@ -1,194 +1,152 @@
-import {
-  CategoryScale,
-  Chart,
-  Filler,
-  Legend,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-} from "chart.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Line } from "react-chartjs-2";
-Chart.register(
+import {
+  Chart as ChartJS,
+  LineElement,
   CategoryScale,
   LinearScale,
   PointElement,
-  LineElement,
-  Title,
   Tooltip,
+  Legend,
   Filler,
-  Legend
+} from "chart.js";
+
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend,
+  Filler
 );
-export function CryptoChart() {
-  const [bitcoinData, setBitcoinData] = useState({ prices: [], labels: [] });
 
-  const [timeframe, setTimeframe] = useState("24h");
-  const [loading, setLoading] = useState(true);
+export default function CryptoChart() {
+  const [mode, setMode] = useState("mensal");
 
-  const formatTrillions = (value: number) => {
-    return (value / 1000000000000).toFixed(2) + "T";
+  const formatUSD = (value: any) => {
+    return new Intl.NumberFormat("pt-PT", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${
-            timeframe === "24h"
-              ? 1
-              : timeframe === "7d"
-              ? 7
-              : timeframe === "30d"
-              ? 30
-              : 365
-          }&interval=${timeframe === "24h" ? "hourly" : "daily"}`
-        );
-        const data = await response.json();
-        const prices = data.prices.map((price: number[]) => price[1]);
-        const labels = data.prices.map((price: number[]) => {
-          const date = new Date(price[0]);
-          return timeframe === "24h"
-            ? date.toLocaleTimeString()
-            : date.toLocaleDateString();
-        });
-        setBitcoinData({ prices, labels });
-      } catch (error) {
-        console.error("Error fetching Bitcoin data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-    const interval = setInterval(fetchData, 120000);
-    return () => clearInterval(interval);
-  }, [timeframe]);
-
-  const chartData = {
-    labels: bitcoinData.labels,
+  const monthlyData = {
+    labels: [
+      "Nov",
+      "Dez",
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+    ],
     datasets: [
       {
-        data: bitcoinData.prices,
-        fill: true,
-        backgroundColor: "rgba(59, 130, 246, 0.2)",
-        borderColor: "#3b82f6",
+        label: "Bitcoin (USD)",
+        data: [
+          36500, 42000, 38000, 48000, 60000, 58000, 70000, 65000, 68000, 70000,
+          72000,
+        ],
+        borderColor: "#3B82F6",
+        backgroundColor: "#3B82F6",
         tension: 0.4,
-        pointRadius: 0,
-        pointHoverRadius: 5,
-        borderWidth: 3,
+        fill: { target: "origin", above: "rgba(59, 130, 246, 0.1)" },
+        pointBackgroundColor: "#3B82F6",
+        pointBorderWidth: 2,
+        pointRadius: 4,
       },
     ],
   };
-  const chartOptions = {
+
+  const annualData = {
+    labels: ["2020", "2021", "2022", "2023", "2024", "2025"],
+    datasets: [
+      {
+        label: "Bitcoin (USD)",
+        data: [29000, 47000, 16500, 42000, 68000, 72000],
+        borderColor: "#10B981",
+        backgroundColor: "#10B981",
+        tension: 0.4,
+        fill: { target: "origin", above: "rgba(16, 185, 129, 0.1)" },
+        pointBackgroundColor: "#10B981",
+        pointBorderWidth: 2,
+        pointRadius: 4,
+      },
+    ],
+  };
+
+  const options = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      x: {
+        ticks: { color: "#94a3b8" },
+        grid: { display: false },
+      },
+      y: {
+        ticks: {
+          color: "#94a3b8",
+          callback: (value: any) => formatUSD(value),
+        },
+        grid: { color: "rgba(148, 163, 184, 0.1)" },
+      },
+    },
     plugins: {
       legend: { display: false },
       tooltip: {
         backgroundColor: "#1e293b",
         titleColor: "#fff",
         bodyColor: "#cbd5e1",
-        displayColors: true,
         callbacks: {
-          title: (context: any) => {
-            return `Bitcoin (BTC)`;
-          },
-          label: (context: { raw: any }) => {
+          label: (context: any) => {
             return `${formatUSD(context.raw)}`;
           },
         },
       },
     },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawBorder: false,
-        },
-        ticks: {
-          color: "#94a3b8",
-          maxRotation: 0,
-          font: {
-            size: 10,
-          },
-        },
-      },
-      y: {
-        grid: {
-          color: "rgba(148, 163, 184, 0.1)",
-          drawBorder: false,
-        },
-        ticks: {
-          color: "#94a3b8",
-          callback: (value: any) => formatUSD(value),
-          font: {
-            size: 10,
-          },
-        },
-      },
-    },
-    elements: {
-      line: {
-        tension: 0.4,
-      },
-    },
   };
+
   return (
-    <div>
-      <div className="flex space-x-2">
+    <div className="flex flex-col gap-4 bg-slate-900 p-6 rounded-lg text-white">
+      <h2 className="text-xl font-bold">Performance do Bitcoin</h2>
+      <p className="text-slate-400">Últimos 12 meses</p>
+
+      <div className="flex gap-4 mt-2">
         <button
-          onClick={() => setTimeframe("24h")}
-          className={`px-4 py-1 rounded-full text-sm ${
-            timeframe === "24h"
-              ? "bg-blue-500 text-white"
-              : "bg-slate-700 text-slate-300 border border-slate-600"
+          onClick={() => setMode("mensal")}
+          className={`px-4 py-2 rounded-full text-sm ${
+            mode === "mensal"
+              ? "bg-blue-600 text-white"
+              : "bg-slate-700 text-slate-300"
           }`}
         >
-          24h
+          Mensal
         </button>
         <button
-          onClick={() => setTimeframe("7d")}
-          className={`px-4 py-1 rounded-full text-sm ${
-            timeframe === "7d"
-              ? "bg-blue-500 text-white"
-              : "bg-slate-700 text-slate-300 border border-slate-600"
+          onClick={() => setMode("anual")}
+          className={`px-4 py-2 rounded-full text-sm ${
+            mode === "anual"
+              ? "bg-blue-600 text-white"
+              : "bg-slate-700 text-slate-300"
           }`}
         >
-          7d
-        </button>
-        <button
-          onClick={() => setTimeframe("30d")}
-          className={`px-4 py-1 rounded-full text-sm ${
-            timeframe === "30d"
-              ? "bg-blue-500 text-white"
-              : "bg-slate-700 text-slate-300 border border-slate-600"
-          }`}
-        >
-          30d
-        </button>
-        <button
-          onClick={() => setTimeframe("1a")}
-          className={`px-4 py-1 rounded-full text-sm ${
-            timeframe === "1a"
-              ? "bg-blue-500 text-white"
-              : "bg-slate-700 text-slate-300 border border-slate-600"
-          }`}
-        >
-          1a
+          Anual
         </button>
       </div>
 
-      <div className="h-64">
-        <Line data={chartData} options={chartOptions} />
+      <div className="h-64 w-full mt-2">
+        <Line
+          data={mode === "mensal" ? monthlyData : annualData}
+          options={options}
+        />
       </div>
     </div>
   );
-}
-function formatUSD(raw: any): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(raw);
 }
