@@ -21,8 +21,8 @@ ChartJS.register(
   Filler
 );
 
-export default function CryptoChart() {
-  const [mode, setMode] = useState("mensal");
+export default function BitcoinChart() {
+  const [mode, setMode] = useState("diaria");
 
   const formatUSD = (value: any) => {
     return new Intl.NumberFormat("pt-PT", {
@@ -31,6 +31,45 @@ export default function CryptoChart() {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(value);
+  };
+
+  const dailyData = {
+    labels: [
+      "1 Set",
+      "2 Set",
+      "3 Set",
+      "4 Set",
+      "5 Set",
+      "6 Set",
+      "7 Set",
+      "8 Set",
+      "9 Set",
+      "10 Set",
+      "11 Set",
+      "12 Set",
+      "13 Set",
+      "14 Set",
+      "15 Set",
+      "16 Set",
+      "17 Set",
+      "18 Set",
+    ],
+    datasets: [
+      {
+        label: "Bitcoin (USD)",
+        data: [
+          71200, 70800, 71500, 71400, 71800, 72300, 71900, 72100, 71800, 72000,
+          71600, 71400, 71600, 72100, 71900, 71700, 71800, 72000,
+        ],
+        borderColor: "#F59E0B",
+        backgroundColor: "#F59E0B",
+        tension: 0.4,
+        fill: { target: "origin", above: "rgba(245, 158, 11, 0.1)" },
+        pointBackgroundColor: "#F59E0B",
+        pointBorderWidth: 2,
+        pointRadius: 3,
+      },
+    ],
   };
 
   const monthlyData = {
@@ -120,6 +159,16 @@ export default function CryptoChart() {
 
       <div className="flex gap-4 mt-2">
         <button
+          onClick={() => setMode("diaria")}
+          className={`px-4 py-2 rounded-full text-sm ${
+            mode === "diaria"
+              ? "bg-blue-600 text-white"
+              : "bg-slate-700 text-slate-300"
+          }`}
+        >
+          Diária
+        </button>
+        <button
           onClick={() => setMode("mensal")}
           className={`px-4 py-2 rounded-full text-sm ${
             mode === "mensal"
@@ -143,7 +192,13 @@ export default function CryptoChart() {
 
       <div className="h-64 w-full mt-2">
         <Line
-          data={mode === "mensal" ? monthlyData : annualData}
+          data={
+            mode === "diaria"
+              ? dailyData
+              : mode === "mensal"
+              ? monthlyData
+              : annualData
+          }
           options={options}
         />
       </div>
