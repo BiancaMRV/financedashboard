@@ -154,7 +154,7 @@ export default function BitcoinChart() {
 
   return (
     <div className="flex flex-col gap-4 bg-slate-900 p-6 rounded-lg text-white">
-      <h2 className="text-xl font-bold">Performance do Bitcoin</h2>
+      <h2 className="text-sm text-gray-400">Performance do Bitcoin</h2>
       <p className="text-slate-400">Últimos 12 meses</p>
 
       <div className="flex gap-4 mt-2">
